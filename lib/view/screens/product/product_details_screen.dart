@@ -43,6 +43,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>  with Ticke
   TabController _tabController;
   int _tabIndex = 0;
 
+  List<DaysBean> listDays = [];
+  bool isDaily =false;
+  bool isOneTime =true;
+  bool isWeekly =false;
+  bool isDays =false;
+
   @override
   void initState() {
     _tabController = TabController(length: 2, initialIndex: 0, vsync: this);
@@ -53,6 +59,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>  with Ticke
     Provider.of<SplashProvider>(context, listen: false).initSharedData();
     Provider.of<CartProvider>(context, listen: false).getCartData();
     Provider.of<CartProvider>(context, listen: false).setSelect(0, false);
+
+    listDays?.add(DaysBean(days: "Sun"));
+    listDays?.add(DaysBean(days: "Mon"));
+    listDays?.add(DaysBean(days: "Tue"));
+    listDays?.add(DaysBean(days: "Wed"));
+    listDays?.add(DaysBean(days: "Thu"));
+    listDays?.add(DaysBean(days: "Fri"));
+    listDays?.add(DaysBean(days: "Sat"));
 
     super.initState();
   }
@@ -139,7 +153,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>  with Ticke
                             Column(children: [
                               ProductImageView(productModel: productProvider.product),
 
-                              ProductTitleView(product: productProvider.product, stock: _stock, cartIndex: productProvider.cartIndex),
+                              ProductTitleView(product: productProvider.product, stock: _stock, cartIndex: productProvider.cartIndex, isOneTime :isOneTime),
 
                               VariationView(product: productProvider.product),
 
@@ -156,6 +170,219 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>  with Ticke
                               SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
                               // Description
+
+
+                              SizedBox(height: 0,),
+                              Container(
+                                margin: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_SMALL),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text("I need to get it frequently", style: poppinsMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+                                    SizedBox(height: 16,),
+                                    Row(
+                                      children: [
+                                        GestureDetector(
+                                          onTap: (){
+                                            setState(() {
+                                              isDaily = true;
+                                              isWeekly = false;
+                                              isDays = false;
+                                              isOneTime = false;
+                                            });
+                                          },
+                                          child: Container(
+                                            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6),
+                                            decoration: BoxDecoration(
+                                              color: isDaily ? Theme.of(context).primaryColor : Colors.white,
+                                              border: Border.all(width: 2.0, color: Theme.of(context).primaryColor),
+                                              borderRadius: BorderRadius.all(Radius.circular(
+                                                  50.0) //                 <--- border radius here
+                                              ),
+                                            ),
+                                            child: Text("Daily", style: TextStyle(fontSize: 12, color: !isDaily ? Theme.of(context).primaryColor : Colors.white),),
+                                          ),
+                                        ),
+                                        SizedBox(width: 12,),
+                                        GestureDetector(
+                                          onTap: (){
+                                            setState(() {
+                                              isOneTime = true;
+                                              isDaily = false;
+                                              isWeekly = false;
+                                              isDays = false;
+                                            });
+                                          },
+                                          child: Container(
+                                            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6),
+                                            decoration: BoxDecoration(
+                                              color: isOneTime ? Theme.of(context).primaryColor : Colors.white,
+                                              border: Border.all(width: 2.0, color: Theme.of(context).primaryColor),
+                                              borderRadius: BorderRadius.all(Radius.circular(50.0) //                 <--- border radius here
+                                              ),
+                                            ),
+                                            child: Text("One Time", style: TextStyle(fontSize: 12, color: !isOneTime ? Theme.of(context).primaryColor : Colors.white),),
+                                          ),
+                                        ),
+                                        SizedBox(width: 12,),
+                                        GestureDetector(
+                                          onTap: (){
+                                            setState(() {
+                                              isOneTime = false;
+                                              isDaily = false;
+                                              isWeekly = true;
+                                              isDays = false;
+                                            });
+                                          },
+                                          child: Container(
+                                            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6),
+                                            decoration: BoxDecoration(
+                                              color: isWeekly ? Theme.of(context).primaryColor : Colors.white,
+                                              border: Border.all(width: 2.0,color: Theme.of(context).primaryColor),
+                                              borderRadius: BorderRadius.all(Radius.circular(
+                                                  50.0) //                 <--- border radius here
+                                              ),
+                                            ),
+                                            child: Text("Weekly", style: TextStyle(fontSize: 12,color: !isWeekly ? Theme.of(context).primaryColor : Colors.white),),
+                                          ),
+                                        ),
+                                        SizedBox(width: 12,),
+                                        GestureDetector(
+                                          onTap: (){
+                                            setState(() {
+                                              isOneTime = false;
+                                              isDaily = false;
+                                              isWeekly = false;
+                                              isDays = true;
+                                            });
+                                          },
+                                          child: Container(
+                                            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6),
+                                            decoration: BoxDecoration(
+                                              color: isDays ? Theme.of(context).primaryColor : Colors.white,
+                                              border: Border.all(width: 2.0,color: Theme.of(context).primaryColor),
+                                              borderRadius: BorderRadius.all(Radius.circular(
+                                                  50.0) //                 <--- border radius here
+                                              ),
+                                            ),
+                                            child: Text("Select Days", style: TextStyle(fontSize: 12, color: !isDays ? Theme.of(context).primaryColor : Colors.white),),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(height: 24,),
+                                    if(isDays)
+                                    SizedBox(
+                                      //height: 100,
+                                      child: GridView.builder(
+                                        physics: NeverScrollableScrollPhysics(),
+                                        itemCount: listDays?.length,
+                                        shrinkWrap: true,
+                                        // scrollDirection: Axis.horizontal,
+                                        itemBuilder: (context, index) {
+                                          return Container(
+                                            child: Column(
+                                              children: [
+                                                Text(listDays[index].days ?? "Sun",style: TextStyle(fontSize: 14),),
+                                                Checkbox(value: listDays[index].isCheck, onChanged: (value) {
+                                                  setState(() {
+                                                    if(listDays[index].isCheck == true) {
+                                                      listDays[index].isCheck = false;
+                                                    }else{
+                                                      listDays[index].isCheck = true;
+                                                    }
+                                                  });
+                                                },)
+                                              ],
+                                            ),
+                                          );
+                                        }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 7,
+                                          childAspectRatio: .7
+                                      ),),
+                                    ),
+                                    /*SizedBox(height: 24,),
+                                    Row(
+                                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text("Start From", style: TextStyle(fontSize: 16),),
+                                              SizedBox(height: 8,),
+                                              Container(
+                                                  height: 44,
+                                                  decoration: BoxDecoration(
+                                                      color: Theme.of(context).primaryColor,
+                                                      borderRadius: BorderRadius.circular(10)),
+                                                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                                                  child: TextField(
+                                                    // controller: emailController,
+                                                    keyboardType: TextInputType.text,
+                                                    cursorColor: Theme.of(context).primaryColor,
+                                                    onTap: (){
+
+                                                    },
+                                                    readOnly: true,
+                                                    autocorrect: true,
+                                                    style: const TextStyle(
+
+                                                      fontSize: 14,
+                                                    ),
+                                                    decoration: const InputDecoration(
+                                                      border: InputBorder.none,
+                                                      hintText: 'From',
+                                                      hintStyle: TextStyle(),
+                                                      filled: true,
+                                                      fillColor: Colors.transparent,
+                                                    ),
+                                                  )),
+                                            ],
+                                          ),
+                                        ),
+                                        SizedBox(width: 16,),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text("To Data", style: TextStyle(fontSize: 16),),
+                                              SizedBox(height: 8,),
+                                              Container(
+                                                  height: 44,
+                                                  decoration: BoxDecoration(
+            color: Theme.of(context).primaryColor,
+                                                      borderRadius: BorderRadius.circular(10)),
+                                                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                                                  child: TextField(
+                                                    // controller: emailController,
+                                                    keyboardType: TextInputType.text,
+                                                    cursorColor: Theme.of(context).primaryColor,
+                                                    onTap: (){
+
+                                                    },
+                                                    readOnly: true,
+                                                    autocorrect: true,
+                                                    style: const TextStyle(
+
+                                                      fontSize: 14,
+                                                    ),
+                                                    decoration: const InputDecoration(
+                                                      border: InputBorder.none,
+                                                      hintText: 'To',
+                                                      hintStyle: TextStyle(
+                                                          ),
+                                                      filled: true,
+                                                      fillColor: Colors.transparent,
+                                                    ),
+                                                  )),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    )*/
+                                  ],
+                                ),
+                              )
 
                             ],),
 
@@ -175,17 +402,63 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>  with Ticke
                       margin: Dimensions.PADDING_SIZE_SMALL,
                       buttonText: getTranslated(productProvider.cartIndex != null ? 'already_added' : _stock <= 0 ? 'out_of_stock' : 'add_to_card', context),
                       onPressed: (productProvider.cartIndex == null && _stock > 0) ? () {
-                        if (productProvider.cartIndex == null && _stock > 0) {
-                          Provider.of<CartProvider>(context, listen: false).addToCart(_cartModel);
-                          //   _key.currentState.shake();
+                       // var tsCart = Provider.of<CartProvider>(context).cartList.length;
+                        var tsCart = Provider.of<CartProvider>(context, listen: false).cartList.length;
+
+                          if (productProvider.cartIndex == null && _stock > 0) {
+
+                            if(isOneTime){
+                              _cartModel.type = "One Time";
+                              _cartModel.days = [];
+                              Provider.of<CartProvider>(context, listen: false)
+                                  .addToCart(_cartModel);
+                              //   _key.currentState.shake();
 
 
-                          showCustomSnackBar(getTranslated('added_to_cart', context),context, isError: false);
+                              showCustomSnackBar(
+                                  getTranslated('added_to_cart', context),
+                                  context, isError: false);
+                            }else{
+                              if(tsCart == 0){
 
-                        } else {
-                          // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(getTranslated('already_added', context)), backgroundColor: Colors.red,));
-                          showCustomSnackBar(getTranslated('already_added', context), context);
-                        }
+                                if(isDaily){
+                                  _cartModel.type = "Daily";
+                                  _cartModel.days = [];
+                                } if(isWeekly){
+                                  _cartModel.type = "Weekly";
+                                  _cartModel.days = [];
+                                } if(isDays){
+                                  _cartModel.type = "Select Days";
+                                  List<dynamic> days = [];
+                                  listDays.forEach((element) {
+                                    if(element.isCheck){
+                                      days.add(element.days);
+                                    }
+                                  });
+                                  _cartModel.days = days;
+                                }
+
+                                Provider.of<CartProvider>(context, listen: false)
+                                    .addToCart(_cartModel);
+                                //   _key.currentState.shake();
+
+
+                                showCustomSnackBar(
+                                    getTranslated('added_to_cart', context),
+                                    context, isError: false);
+                              }else{
+                                showCustomSnackBar("Multiple Order available only One Time delivery option"
+                                    /*getTranslated('already_added', context)*/,
+                                    context);
+                              }
+                            }
+
+                          } else {
+                            // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(getTranslated('already_added', context)), backgroundColor: Colors.red,));
+                            showCustomSnackBar(
+                                getTranslated('already_added', context),
+                                context);
+                          }
                       } : null,
                     ),
                   ),
@@ -409,5 +682,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>  with Ticke
       ) ,
     ],);
   }
+}
+
+class DaysBean {
+  String days;
+  bool isCheck = false;
+
+  DaysBean({
+    this.days,
+  });
 }
 

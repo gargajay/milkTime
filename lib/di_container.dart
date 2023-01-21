@@ -15,6 +15,7 @@ import 'package:flutter_grocery/data/repository/product_repo.dart';
 import 'package:flutter_grocery/data/repository/profile_repo.dart';
 import 'package:flutter_grocery/data/repository/search_repo.dart';
 import 'package:flutter_grocery/data/repository/splash_repo.dart';
+import 'package:flutter_grocery/data/repository/wallet_repo.dart';
 import 'package:flutter_grocery/data/repository/wishlist_repo.dart';
 import 'package:flutter_grocery/provider/auth_provider.dart';
 import 'package:flutter_grocery/provider/banner_provider.dart';
@@ -34,6 +35,7 @@ import 'package:flutter_grocery/provider/profile_provider.dart';
 import 'package:flutter_grocery/provider/search_provider.dart';
 import 'package:flutter_grocery/provider/splash_provider.dart';
 import 'package:flutter_grocery/provider/theme_provider.dart';
+import 'package:flutter_grocery/provider/wallet_provider.dart';
 import 'package:flutter_grocery/provider/wishlist_provider.dart';
 import 'package:flutter_grocery/utill/app_constants.dart';
 import 'package:get_it/get_it.dart';
@@ -67,6 +69,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => LanguageRepo());
   sl.registerLazySingleton(() => NewsLetterRepo(dioClient: sl()));
   sl.registerLazySingleton(() => WishListRepo(dioClient: sl()));
+  sl.registerLazySingleton(() => WalletRepo(dioClient: sl()));
 
   // Provider
   sl.registerFactory(() => ThemeProvider(sharedPreferences: sl()));
@@ -88,6 +91,7 @@ Future<void> init() async {
   sl.registerFactory(() => LanguageProvider(languageRepo: sl()));
   sl.registerFactory(() => NewsLetterProvider(newsLetterRepo: sl()));
   sl.registerFactory(() => WishListProvider(wishListRepo: sl()));
+  sl.registerFactory(() => WalletProvider(walletRepo: sl()));
 
 
   // External

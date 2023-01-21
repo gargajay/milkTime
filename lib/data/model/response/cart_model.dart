@@ -14,10 +14,13 @@ class CartModel {
   String _unit;
   int _stock;
   Product _product;
+  String _type;
+  List<dynamic> _days;
 
 
   CartModel(this._id, this._image, this._name, this._price, this._discountedPrice, this._quantity, this._variation, this._discount,
        this._tax, this._capacity, this._unit, this._stock, this._product);
+
 
 
   Variations get variation => _variation;
@@ -38,6 +41,14 @@ class CartModel {
   double get tax => _tax;
   int get stock => _stock;
   Product get product =>_product;
+  String get type => _type;
+  set type(String value) {
+    _type = value;
+  }
+  List<dynamic> get days =>_days;
+  set days(List<dynamic> value) {
+    _days = value;
+  }
 
 
   CartModel.fromJson(Map<String, dynamic> json) {
@@ -53,7 +64,9 @@ class CartModel {
     _capacity = json['capacity'];
     _unit = json['unit'];
     _stock = json['stock'];
+    _type = json['type'];
     _product = json['product'] != null ? Product.fromJson(json['product']) : null;
+    _days = json['days'] != null ? json['days'] : null;
 
   }
 
@@ -73,8 +86,12 @@ class CartModel {
     data['capacity'] = this._capacity;
     data['unit'] = this._unit;
     data['stock'] = this._stock;
+    data['type'] = this._type;
     if (this._product != null) {
       data['product'] = this._product.toJson();
+    }
+    if (this._days != null) {
+      data['days'] = this._days;
     }
     return data;
   }

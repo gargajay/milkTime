@@ -38,6 +38,15 @@ class CartProductWidget extends StatelessWidget {
       }
     }
 
+    /*String s = "";
+    if(cart.days != null && cart.days.isNotEmpty){
+      s = cart.days.join(', ');
+    }
+
+
+    print("dsfsdfsdf " +  cart.toJson().toString());
+    print("dsfsdfsdf " +  s);
+*/
     return Container(
       margin: EdgeInsets.only(bottom: Dimensions.PADDING_SIZE_DEFAULT),
       decoration: BoxDecoration(color: Theme.of(context).primaryColor, borderRadius: BorderRadius.circular(10)),
@@ -60,7 +69,7 @@ class CartProductWidget extends StatelessWidget {
               Provider.of<CartProvider>(context, listen: false).removeFromCart(index, context);
             },
             child: Container(
-              height: 105,
+             // height: 120,
               padding: EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL, horizontal: Dimensions.PADDING_SIZE_SMALL),
               decoration: BoxDecoration(
                 color: Theme.of(context).cardColor,
@@ -145,6 +154,16 @@ class CartProductWidget extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                           )),
                         ]) : SizedBox(),
+                        Text(
+                          cart.type.toString() ,
+                          style: poppinsSemiBold.copyWith(fontSize: Dimensions.FONT_SIZE_SMALL),
+                        ),
+
+                        if(cart.days != null && cart.days.isNotEmpty)
+                        Text(
+                          cart.days.toString() ,
+                          style: poppinsRegular.copyWith(fontSize: Dimensions.FONT_SIZE_SMALL),
+                        )
                       ],
                     )),
 

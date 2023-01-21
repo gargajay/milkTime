@@ -18,6 +18,7 @@ import 'package:flutter_grocery/view/screens/menu/widget/menu_button.dart';
 import 'package:flutter_grocery/view/screens/menu/widget/sign_out_confirmation_dialog.dart';
 import 'package:flutter_grocery/view/screens/notification/notification_screen.dart';
 import 'package:flutter_grocery/view/screens/profile/profile_screen.dart';
+import 'package:flutter_grocery/view/screens/wallet/wallet_screen.dart';
 import 'package:provider/provider.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -95,65 +96,88 @@ class MenuWidget extends StatelessWidget {
                           ),
                         ):SizedBox(),
                         Consumer<ProfileProvider>(
-                          builder: (context, profileProvider, child) => Row(
+                          builder: (context, profileProvider, child) =>
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Expanded(
-                                child: ListTile(
-                                  onTap: () {
-                                    Navigator.of(context).pushNamed(RouteHelper.profile, arguments: ProfileScreen());
-                                  },
-                                  leading: ClipOval(
-                                    child: _isLoggedIn ?Provider.of<SplashProvider>(context, listen: false).baseUrls != null ?
-                                    Builder(
-                                      builder: (context) {
-                                        return FadeInImage.assetNetwork(
-                                          placeholder: Images.placeholder(context),
-                                          image: '${Provider.of<SplashProvider>(context, listen: false).baseUrls.customerImageUrl}/'
-                                              '${profileProvider.userInfoModel != null ? profileProvider.userInfoModel.image : ''}',
-                                          height: 50, width: 50, fit: BoxFit.cover,
-                                          imageErrorBuilder: (c, o, s) => Image.asset(Images.placeholder(context), height: 50, width: 50, fit: BoxFit.cover),
-                                        );
-                                      }
-                                    ) : SizedBox() : Image.asset(Images.placeholder(context), height: 50, width: 50, fit: BoxFit.cover),
-                                  ),
-                                  title: Column( crossAxisAlignment: CrossAxisAlignment.start, children: [
+                                Expanded(
+                                  child: ListTile(
+                                    onTap: () {
+                                      Navigator.of(context).pushNamed(RouteHelper.profile, arguments: ProfileScreen());
+                                    },
+                                    leading: ClipOval(
+                                      child: _isLoggedIn ?Provider.of<SplashProvider>(context, listen: false).baseUrls != null ?
+                                      Builder(
+                                        builder: (context) {
+                                          return FadeInImage.assetNetwork(
+                                            placeholder: Images.placeholder(context),
+                                            image: '${Provider.of<SplashProvider>(context, listen: false).baseUrls.customerImageUrl}/'
+                                                '${profileProvider.userInfoModel != null ? profileProvider.userInfoModel.image : ''}',
+                                            height: 50, width: 50, fit: BoxFit.cover,
+                                            imageErrorBuilder: (c, o, s) => Image.asset(Images.placeholder(context), height: 50, width: 50, fit: BoxFit.cover),
+                                          );
+                                        }
+                                      ) : SizedBox() : Image.asset(Images.placeholder(context), height: 50, width: 50, fit: BoxFit.cover),
+                                    ),
+                                    title: Column( crossAxisAlignment: CrossAxisAlignment.start, children: [
 
-                                    _isLoggedIn ? profileProvider.userInfoModel != null ? Text(
-                                      '${profileProvider.userInfoModel.fName ?? ''} ${profileProvider.userInfoModel.lName ?? ''}',
-                                      style: poppinsRegular.copyWith(color: Provider.of<ThemeProvider>(context).darkTheme
-                                          ? ColorResources.getTextColor(context)
-                                          : ResponsiveHelper.isDesktop(context)? ColorResources.getDarkColor(context): ColorResources.getBackgroundColor(context),),
-                                    ) : Container(height: 10, width: 150, color: ResponsiveHelper.isDesktop(context)? ColorResources.getDarkColor(context): ColorResources.getBackgroundColor(context)) : Text(
-                                      getTranslated('guest', context),
-                                      style: poppinsRegular.copyWith( color: Provider.of<ThemeProvider>(context).darkTheme
-                                          ? ColorResources.getTextColor(context)
-                                          : ResponsiveHelper.isDesktop(context)? ColorResources.getDarkColor(context): ColorResources.getBackgroundColor(context),),
-                                    ),
-                                    _isLoggedIn ? profileProvider.userInfoModel != null ? Text(
-                                      '${profileProvider.userInfoModel.phone ?? ''}',
-                                      style: poppinsRegular.copyWith(color: Provider.of<ThemeProvider>(context).darkTheme
-                                          ? ColorResources.getTextColor(context)
-                                          : ResponsiveHelper.isDesktop(context)? ColorResources.getDarkColor(context): ColorResources.getBackgroundColor(context),)
-                                    ) : Container(height: 10, width: 100, color: ResponsiveHelper.isDesktop(context)? ColorResources.getDarkColor(context):ColorResources.getBackgroundColor(context)) : Text(
-                                      '0123456789',
-                                      style: poppinsRegular.copyWith(color: Provider.of<ThemeProvider>(context).darkTheme
-                                          ? ColorResources.getTextColor(context)
-                                          : ResponsiveHelper.isDesktop(context)? ColorResources.getDarkColor(context): ColorResources.getBackgroundColor(context),),
-                                    ),
-                                  ]),
+                                      _isLoggedIn ? profileProvider.userInfoModel != null ? Text(
+                                        '${profileProvider.userInfoModel.fName ?? ''} ${profileProvider.userInfoModel.lName ?? ''}',
+                                        style: poppinsRegular.copyWith(color: Provider.of<ThemeProvider>(context).darkTheme
+                                            ? ColorResources.getTextColor(context)
+                                            : ResponsiveHelper.isDesktop(context)? ColorResources.getDarkColor(context): ColorResources.getBackgroundColor(context),),
+                                      ) : Container(height: 10, width: 150, color: ResponsiveHelper.isDesktop(context)? ColorResources.getDarkColor(context): ColorResources.getBackgroundColor(context)) : Text(
+                                        getTranslated('guest', context),
+                                        style: poppinsRegular.copyWith( color: Provider.of<ThemeProvider>(context).darkTheme
+                                            ? ColorResources.getTextColor(context)
+                                            : ResponsiveHelper.isDesktop(context)? ColorResources.getDarkColor(context): ColorResources.getBackgroundColor(context),),
+                                      ),
+                                      _isLoggedIn ? profileProvider.userInfoModel != null ? Text(
+                                        '${profileProvider.userInfoModel.phone ?? ''}',
+                                        style: poppinsRegular.copyWith(color: Provider.of<ThemeProvider>(context).darkTheme
+                                            ? ColorResources.getTextColor(context)
+                                            : ResponsiveHelper.isDesktop(context)? ColorResources.getDarkColor(context): ColorResources.getBackgroundColor(context),)
+                                      ) : Container(height: 10, width: 100, color: ResponsiveHelper.isDesktop(context)? ColorResources.getDarkColor(context):ColorResources.getBackgroundColor(context)) : Text(
+                                        '0123456789',
+                                        style: poppinsRegular.copyWith(color: Provider.of<ThemeProvider>(context).darkTheme
+                                            ? ColorResources.getTextColor(context)
+                                            : ResponsiveHelper.isDesktop(context)? ColorResources.getDarkColor(context): ColorResources.getBackgroundColor(context),),
+                                      ),
+                                    ]),
+                                  ),
                                 ),
-                              ),
-                              IconButton(
-                                icon: Icon(Icons.notifications,
-                                    color: Provider.of<ThemeProvider>(context).darkTheme
-                                        ? ColorResources.getTextColor(context)
-                                        : ResponsiveHelper.isDesktop(context)? ColorResources.getDarkColor(context):  ColorResources.getBackgroundColor(context)),
-                                onPressed: () {
-                                  Navigator.pushNamed(context, RouteHelper.notification, arguments: NotificationScreen());
-                                },
-                              ),
+                               /* Column(
+                                  children: [
+                                    IconButton(
+                                      icon: Icon(Icons.wallet,
+                                          color: Provider.of<ThemeProvider>(context).darkTheme
+                                              ? ColorResources.getTextColor(context)
+                                              : ResponsiveHelper.isDesktop(context)? ColorResources.getDarkColor(context):  ColorResources.getBackgroundColor(context)),
+                                      onPressed: () {
+                                        Navigator.pushNamed(context, RouteHelper.WALLET, arguments: WalletScreen());
+                                      },
+                                    ),
+                                    Text(getTranslated('wallet', context), style: TextStyle(
+                                        color: Provider.of<ThemeProvider>(context).darkTheme
+                                            ? ColorResources.getTextColor(context)
+                                            : ResponsiveHelper.isDesktop(context)? ColorResources.getDarkColor(context):  ColorResources.getBackgroundColor(context)
+                                    ),)
+                                  ],
+                                ),*/
+                                IconButton(
+                                  icon: Icon(Icons.notifications,
+                                      color: Provider.of<ThemeProvider>(context).darkTheme
+                                          ? ColorResources.getTextColor(context)
+                                          : ResponsiveHelper.isDesktop(context)? ColorResources.getDarkColor(context):  ColorResources.getBackgroundColor(context)),
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, RouteHelper.notification, arguments: NotificationScreen());
+                                  },
+                                ),
                             ],
                           ),
+                              ),
                         ),
                         SizedBox(height: 50),
                        ResponsiveHelper.isDesktop(context) ? SizedBox() : MenuButton(drawerController: drawerController, index: 0, icon: Images.home, title: getTranslated('home', context)),

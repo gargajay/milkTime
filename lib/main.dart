@@ -26,6 +26,7 @@ import 'package:flutter_grocery/provider/search_provider.dart';
 import 'package:flutter_grocery/provider/splash_provider.dart';
 import 'package:flutter_grocery/provider/theme_provider.dart';
 import 'package:flutter_grocery/helper/route_helper.dart';
+import 'package:flutter_grocery/provider/wallet_provider.dart';
 import 'package:flutter_grocery/provider/wishlist_provider.dart';
 import 'package:flutter_grocery/theme/dark_theme.dart';
 import 'package:flutter_grocery/theme/light_theme.dart';
@@ -112,6 +113,7 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (context) => di.sl<LanguageProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<NewsLetterProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<WishListProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<WalletProvider>()),
     ],
     child: MyApp(orderID: _orderID, isWeb: !kIsWeb),
   ));
