@@ -1,5 +1,9 @@
 
+import 'dart:io';
+
+import 'package:coupon_uikit/coupon_uikit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_grocery/helper/responsive_helper.dart';
 import 'package:flutter_grocery/helper/route_helper.dart';
 import 'package:flutter_grocery/localization/language_constrants.dart';
@@ -10,10 +14,13 @@ import 'package:flutter_grocery/utill/color_resources.dart';
 import 'package:flutter_grocery/utill/dimensions.dart';
 import 'package:flutter_grocery/utill/images.dart';
 import 'package:flutter_grocery/utill/styles.dart';
+import 'package:flutter_grocery/view/base/custom_button.dart';
 import 'package:flutter_grocery/view/base/footer_view.dart';
 import 'package:flutter_grocery/view/base/not_login_screen.dart';
 import 'package:flutter_grocery/view/base/web_app_bar/web_app_bar.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
+import 'package:social_share/social_share.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -35,7 +42,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final key = new GlobalKey<ScaffoldState>();
     return Scaffold(
+      key: key,
       // backgroundColor: ResponsiveHelper.isDesktop(context)? ColorResources.getTryBgColor(context) : Theme.of(context).cardColor,
       appBar: ResponsiveHelper.isDesktop(context)? PreferredSize(child: WebAppBar(), preferredSize: Size.fromHeight(120)): AppBar(
         backgroundColor: Theme.of(context).cardColor,
@@ -173,6 +182,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     Divider(),
                                     SizedBox(height: 25),
 
+
+
+                                    /*TextButton(
+                                      onPressed: () async {
+
+                                      },
+                                      child: Container(
+                                        height: 50,
+                                        width: MediaQuery.of(context).size.width,
+                                        decoration: BoxDecoration(
+                                          color: Theme.of(context).primaryColor,
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            getTranslated('save', context),
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    )*/
+
                                   ],
                                 ),
                               ),
@@ -270,6 +304,111 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 style: poppinsRegular.copyWith(fontSize: Dimensions.FONT_SIZE_DEFAULT),
                               ),
                               Divider(),
+                              SizedBox(height: 25),
+
+                    CouponCard(
+                      height: 300,
+                      curvePosition: 180,
+                      curveRadius: 30,
+                      borderRadius: 10,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Theme.of(context).primaryColor,
+                            Theme.of(context).primaryColor,
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                      ),
+                      firstChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'MY REFERRAL CODE',
+                            style: TextStyle(
+                              color: Colors.white54,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            '₹ ${profileProvider.userInfoModel.ref_amount ?? ''}',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 56,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          InkWell(
+                            onTap: (){
+
+                              Clipboard.setData(ClipboardData(text: profileProvider.userInfoModel.self_ref_code ?? '')).then((_){
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                  backgroundColor: Theme.of(context).primaryColor,
+                                    content: Text("Copied to Code")));
+                              });
+
+
+                            },
+                            child: Text(
+                              '${profileProvider.userInfoModel.self_ref_code ?? ''}',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      secondChild: Container(
+                        width: double.maxFinite,
+                        decoration: const BoxDecoration(
+                          border: Border(
+                            top: BorderSide(color: Colors.white),
+                          ),
+                        ),
+                        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 42),
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(60),
+                              ),
+                            ),
+                            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                              const EdgeInsets.symmetric(horizontal: 80),
+                            ),
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                              Colors.white,
+                            ),
+                          ),
+                          onPressed: () async {
+                            //without an image
+                            final packageName = (await PackageInfo.fromPlatform()).packageName;
+                            final appId = Platform.isAndroid ? packageName : packageName;
+                            final url = Uri.parse(
+                              Platform.isAndroid
+                                  ? "https://play.google.com/store/apps/details?id=$appId"
+                                  : "https://apps.apple.com/app/id$appId",
+                            );
+                            SocialShare.shareOptions("Refer a friend and earn ₹ ${profileProvider.userInfoModel.ref_amount ?? ''} when they pay their first order.\n Referral Code:- ${profileProvider.userInfoModel.self_ref_code ?? ''}\nApp Link:- $url",
+                            );
+                          },
+                          child: Text(
+                            'SHARE',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                              SizedBox(height: 60,)
                             ],
                           ),
                         ),

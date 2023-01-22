@@ -11,6 +11,6 @@ void showCustomSnackBar(String message, BuildContext context, {bool isError = tr
       ) : EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
       behavior: SnackBarBehavior.floating ,
       dismissDirection: DismissDirection.down,
-      backgroundColor: isError ? Colors.red : Colors.green)
+      backgroundColor: isError ? Colors.red : Theme.of(context).primaryColor)
   );
 }

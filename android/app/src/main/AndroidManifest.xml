@@ -28,10 +28,10 @@
     </queries>
 
     <application
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/playstore"
         android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true"
-        android:label="Milk Time">
+        android:label="Local Roots">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="YOUR_MAP_KEY" />
@@ -96,5 +96,6 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
     </application>
 </manifest>

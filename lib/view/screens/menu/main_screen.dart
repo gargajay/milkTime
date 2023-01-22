@@ -101,12 +101,12 @@ class _MainScreenState extends State<MainScreen> {
               appBar: ResponsiveHelper.isDesktop(context) ? null : AppBar(
                 backgroundColor: Theme.of(context).cardColor,
                 leading: IconButton(
-                    icon: Image.asset(Images.more_icon, color: Theme.of(context).primaryColor, height: 30, width: 30),
+                    icon: Image.asset(Images.app_logo, /*color: Theme.of(context).primaryColor,*/ height: 36, width: 36),
                     onPressed: () {
                       widget.drawerController.toggle();
                     }),
                 title: splash.pageIndex == 0 ? Row(children: [
-                  Image.asset(Images.app_logo, width: 100),
+                  Image.asset(Images.top_logo, width: 100),
                   /*SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
                   Expanded(child: Text(
                     AppConstants.APP_NAME, maxLines: 1, overflow: TextOverflow.ellipsis,
@@ -118,10 +118,10 @@ class _MainScreenState extends State<MainScreen> {
                 ),
 
                 actions: splash.pageIndex == 0 ? [
-                  IconButton(
+                 /* IconButton(
                       icon: Stack(clipBehavior: Clip.none, children: [
                         Image.asset(Images.wallet, color: Theme.of(context).textTheme.bodyText1.color, width: 25),
-                        /*Positioned(
+                        *//*Positioned(
                           top: -7,
                           right: -2,
                           child: Container(
@@ -130,11 +130,11 @@ class _MainScreenState extends State<MainScreen> {
                             child: Text('${Provider.of<CartProvider>(context).cartList.length}',
                                 style: TextStyle(color: Theme.of(context).cardColor, fontSize: 10)),
                           ),
-                        ),*/
+                        ),*//*
                       ]),
                       onPressed: () {
                         Navigator.pushNamed(context, RouteHelper.WALLET, arguments: WalletScreen());
-                      }),
+                      }),*/
                   IconButton(
                       icon: Stack(clipBehavior: Clip.none, children: [
                         Image.asset(Images.cart_icon, color: Theme.of(context).textTheme.bodyText1.color, width: 25),

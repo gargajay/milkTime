@@ -325,6 +325,8 @@
   "ex_2b": "EX: 2B",
   "user_not_available": "User not available",
   "faq": "FAQ",
-  "wallet": "Wallet"
+  "wallet": "Wallet",
+  "referral_code": "Referral code",
+  "referral_amt": "Referral Amount"
 
 }

@@ -4,6 +4,7 @@ import 'package:flutter_grocery/helper/responsive_helper.dart';
 import 'package:flutter_grocery/helper/route_helper.dart';
 import 'package:flutter_grocery/localization/language_constrants.dart';
 import 'package:flutter_grocery/provider/cart_provider.dart';
+import 'package:flutter_grocery/provider/category_provider.dart';
 import 'package:flutter_grocery/provider/coupon_provider.dart';
 import 'package:flutter_grocery/provider/localization_provider.dart';
 import 'package:flutter_grocery/provider/order_provider.dart';
@@ -45,13 +46,23 @@ class CartScreen extends StatelessWidget {
             double _itemPrice = 0;
             double _discount = 0;
             double _tax = 0;
+            double walletAmount = 0;
+            double _total = 0;
+            walletAmount =  Provider.of<CategoryProvider>(context, listen: false).walletAmount.toDouble();
             cart.cartList.forEach((cartModel) {
               _itemPrice = _itemPrice + (cartModel.price * cartModel.quantity);
               _discount = _discount + (cartModel.discount * cartModel.quantity);
               _tax = _tax + (cartModel.tax * cartModel.quantity);
             });
             double _subTotal = _itemPrice + _tax;
-            double _total = _subTotal - _discount - Provider.of<CouponProvider>(context).discount + deliveryCharge;
+            double _totalBefore = _subTotal - _discount - Provider.of<CouponProvider>(context).discount + deliveryCharge;
+            if(_totalBefore >= walletAmount) {
+              _total = _subTotal - _discount - Provider
+                  .of<CouponProvider>(context)
+                  .discount - walletAmount + deliveryCharge;
+            }else{
+              _total = _totalBefore;
+            }
 
             return cart.cartList.length > 0
                 ? ResponsiveHelper.isDesktop(context)
@@ -178,6 +189,23 @@ class CartScreen extends StatelessWidget {
                                       style: poppinsRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE),
                                     ),
                                   ]),
+
+
+                                  if(walletAmount != 0)
+                                  SizedBox(height: 10),
+
+                                  if(walletAmount != 0)
+                                  _kmWiseCharge ? SizedBox() : Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                                     Text(
+                                         getTranslated('referral_amt', context),
+                                         style: poppinsRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE),
+                                       ),
+                                     Text(
+                                         '(-) ${walletAmount} ${Provider.of<SplashProvider>(context, listen: false).configModel.currencySymbol}',
+                                         style: poppinsRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE),
+                                       ),
+                                     ]),
+
                                   SizedBox(height: 10),
 
                                   _kmWiseCharge ? SizedBox() : Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -190,6 +218,7 @@ class CartScreen extends StatelessWidget {
                                       style: poppinsRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE),
                                     ),
                                   ]),
+
 
                                   Padding(
                                     padding: EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_SMALL),

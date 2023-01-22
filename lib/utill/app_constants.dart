@@ -2,7 +2,7 @@ import 'package:flutter_grocery/data/model/response/language_model.dart';
 import 'images.dart';
 
 class AppConstants {
-  static const String APP_NAME = 'MilkTime';
+  static const String APP_NAME = 'Local Roots';
   static const double APP_VERSION = 6.0;
   static const String BASE_URL = 'https://leadenmilk.rjaytech.com';
   static const String CONFIG_URI = '/api/v1/config';

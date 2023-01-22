@@ -154,7 +154,7 @@ class CartProductWidget extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                           )),
                         ]) : SizedBox(),
-                        Text(
+                        /*Text(
                           cart.type.toString() ,
                           style: poppinsSemiBold.copyWith(fontSize: Dimensions.FONT_SIZE_SMALL),
                         ),
@@ -163,7 +163,7 @@ class CartProductWidget extends StatelessWidget {
                         Text(
                           cart.days.toString() ,
                           style: poppinsRegular.copyWith(fontSize: Dimensions.FONT_SIZE_SMALL),
-                        )
+                        )*/
                       ],
                     )),
 

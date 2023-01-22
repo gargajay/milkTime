@@ -14,6 +14,7 @@ class CategoryProvider extends ChangeNotifier {
 
   int _categorySelectedIndex = -1;
   int _categoryIndex = 0;
+  int _walletAmount = 0;
 
   int get categorySelectedIndex => _categorySelectedIndex;
   int get categoryIndex => _categoryIndex;
@@ -32,6 +33,7 @@ class CategoryProvider extends ChangeNotifier {
   CategoryModel get categoryModel => _categoryModel;
   bool get pageFirstIndex => _pageFirstIndex;
   bool get pageLastIndex => _pageLastIndex;
+  int get walletAmount => _walletAmount;
 
 
   Future<ApiResponse> getCategoryList( BuildContext context,String languageCode, bool reload, {int id}) async {
@@ -41,6 +43,10 @@ class CategoryProvider extends ChangeNotifier {
       apiResponse.response.data.forEach((category) => _categoryList.add(CategoryModel.fromJson(category)));
       _categorySelectedIndex = -1;
       _categoryIndex = 0;
+      if(_categoryList.isNotEmpty) {
+        _walletAmount = _categoryList[0].wallet_amount;
+       // _walletAmount = 100;
+      }
     } else {
       ApiChecker.checkApi(context, apiResponse);
     }

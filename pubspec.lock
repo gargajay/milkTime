@@ -197,6 +197,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.2"
+  coupon_uikit:
+    dependency: "direct main"
+    description:
+      name: coupon_uikit
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
   cross_file:
     dependency: transitive
     description:
@@ -876,7 +883,7 @@ packages:
     source: hosted
     version: "2.1.0"
   package_info_plus:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: package_info_plus
       url: "https://pub.dartlang.org"
@@ -1153,6 +1160,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  social_share:
+    dependency: "direct main"
+    description:
+      name: social_share
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.3.1"
   source_gen:
     dependency: transitive
     description:

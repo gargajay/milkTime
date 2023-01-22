@@ -12,6 +12,8 @@ class UserInfoModel {
   String phone;
   String cmFirebaseToken;
   String loginMedium;
+  String self_ref_code;
+  dynamic ref_amount;
 
   UserInfoModel(
       {this.id,
@@ -27,6 +29,8 @@ class UserInfoModel {
         this.phone,
         this.cmFirebaseToken,
         this.loginMedium,
+        this.self_ref_code,
+        this.ref_amount,
       });
 
   UserInfoModel.fromJson(Map<String, dynamic> json) {
@@ -39,6 +43,8 @@ class UserInfoModel {
     emailVerifiedAt = json['email_verified_at'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
+    self_ref_code = json['self_ref_code'];
+    ref_amount = json['ref_amount'];
     emailVerificationToken = json['email_verification_token'];
     phone = json['phone'];
     cmFirebaseToken = json['cm_firebase_token'];
@@ -60,6 +66,8 @@ class UserInfoModel {
     data['phone'] = this.phone;
     data['cm_firebase_token'] = this.cmFirebaseToken;
     data['login_medium'] = this.loginMedium;
+    data['self_ref_code'] = this.self_ref_code;
+    data['ref_amount'] = this.ref_amount;
     return data;
   }
 }

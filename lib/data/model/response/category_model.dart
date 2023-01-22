@@ -7,6 +7,7 @@ class CategoryModel {
   int _status;
   String _createdAt;
   String _updatedAt;
+  dynamic _wallet_amount;
 
 
   CategoryModel(
@@ -16,6 +17,7 @@ class CategoryModel {
         int parentId,
         int position,
         int status,
+        int wallet_amount,
         String createdAt,
         String updatedAt}) {
     this._id = id;
@@ -26,6 +28,8 @@ class CategoryModel {
     this._status = status;
     this._createdAt = createdAt;
     this._updatedAt = updatedAt;
+    this._updatedAt = updatedAt;
+    this._wallet_amount = wallet_amount;
   }
 
   int get id => _id;
@@ -36,6 +40,7 @@ class CategoryModel {
   int get status => _status;
   String get createdAt => _createdAt;
   String get updatedAt => _updatedAt;
+  dynamic get wallet_amount => _wallet_amount;
 
   CategoryModel.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
@@ -46,6 +51,7 @@ class CategoryModel {
     _status = json['status'];
     _createdAt = json['created_at'];
     _updatedAt = json['updated_at'];
+    _wallet_amount = json['wallet_amount'];
   }
 
   Map<String, dynamic> toJson() {
@@ -58,6 +64,7 @@ class CategoryModel {
     data['status'] = this._status;
     data['created_at'] = this._createdAt;
     data['updated_at'] = this._updatedAt;
+    data['wallet_amount'] = this._wallet_amount;
     return data;
   }
 }

@@ -173,7 +173,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>  with Ticke
 
 
                               SizedBox(height: 0,),
-                              Container(
+                             /* Container(
                                 margin: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_SMALL),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -300,7 +300,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>  with Ticke
                                           childAspectRatio: .7
                                       ),),
                                     ),
-                                    /*SizedBox(height: 24,),
+                                    *//*SizedBox(height: 24,),
                                     Row(
                                       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
@@ -379,10 +379,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>  with Ticke
                                           ),
                                         ),
                                       ],
-                                    )*/
+                                    )*//*
                                   ],
                                 ),
-                              )
+                              )*/
 
                             ],),
 
@@ -407,7 +407,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>  with Ticke
 
                           if (productProvider.cartIndex == null && _stock > 0) {
 
-                            if(isOneTime){
+                            Provider.of<CartProvider>(context, listen: false)
+                                .addToCart(_cartModel);
+                            //   _key.currentState.shake();
+
+
+                            showCustomSnackBar(
+                                getTranslated('added_to_cart', context),
+                                context, isError: false);
+
+                           /* if(isOneTime){
                               _cartModel.type = "One Time";
                               _cartModel.days = [];
                               Provider.of<CartProvider>(context, listen: false)
@@ -448,10 +457,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>  with Ticke
                                     context, isError: false);
                               }else{
                                 showCustomSnackBar("Multiple Order available only One Time delivery option"
-                                    /*getTranslated('already_added', context)*/,
+                                    *//*getTranslated('already_added', context)*//*,
                                     context);
                               }
-                            }
+                            }*/
 
                           } else {
                             // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(getTranslated('already_added', context)), backgroundColor: Colors.red,));
