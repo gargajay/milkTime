@@ -28,7 +28,7 @@
     </queries>
 
     <application
-        android:icon="@drawable/playstore"
+        android:icon="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true"
         android:label="Local Roots">

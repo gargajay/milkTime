@@ -4,7 +4,8 @@ import 'images.dart';
 class AppConstants {
   static const String APP_NAME = 'Local Roots';
   static const double APP_VERSION = 6.0;
-  static const String BASE_URL = 'https://leadenmilk.rjaytech.com';
+  //static const String BASE_URL = 'https://leadenmilk.rjaytech.com';
+  static const String BASE_URL = 'https://localroots.co.in';
   static const String CONFIG_URI = '/api/v1/config';
   static const String BANNER_URI = '/api/v1/banners';
   static const String CATEGORY_URI = '/api/v1/categories';

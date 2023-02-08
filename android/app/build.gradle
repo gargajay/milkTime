@@ -45,6 +45,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+        //com.raytech.localroots
         applicationId "com.u6amtech.flutter_grocery"
         minSdkVersion 21
         targetSdkVersion 31

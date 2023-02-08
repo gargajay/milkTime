@@ -18,6 +18,7 @@ import 'package:flutter_grocery/view/base/custom_button.dart';
 import 'package:flutter_grocery/view/base/footer_view.dart';
 import 'package:flutter_grocery/view/base/not_login_screen.dart';
 import 'package:flutter_grocery/view/base/web_app_bar/web_app_bar.dart';
+import 'package:flutter_grocery/view/screens/wallet/wallet_screen.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:social_share/social_share.dart';
@@ -405,10 +406,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               color: Theme.of(context).primaryColor,
                             ),
                           ),
+
+
                         ),
+
                       ),
                     ),
-                              SizedBox(height: 60,)
+                              SizedBox(height: 24,),
+
+                              InkWell(
+                                onTap: (){
+                                  Navigator.pushNamed(context, RouteHelper.WALLET, arguments: WalletScreen());
+                                },
+                                child: Center(
+                                  child: Text(
+                                    "Referral History",
+                                    style: poppinsRegular.copyWith(fontSize: Dimensions.FONT_SIZE_DEFAULT, color: ColorResources.getHintColor(context)),
+                                  ),
+                                ),
+                              ),
+
+                              SizedBox(height: 60,),
                             ],
                           ),
                         ),

@@ -39,10 +39,10 @@ class _WalletScreenState extends State<WalletScreen> {
           appBar: ResponsiveHelper.isDesktop(context)
               ? PreferredSize(
               child: WebAppBar(), preferredSize: Size.fromHeight(120))
-              : CustomAppBar(title: getTranslated('wallet', context)),
+              : CustomAppBar(title: /*getTranslated('wallet', context)*/"History"),
           body:  Column(
             children: [
-              Padding(
+              /*Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
                   children: [
@@ -92,7 +92,7 @@ class _WalletScreenState extends State<WalletScreen> {
                     )
                   ],
                 ),
-              ),
+              ),*/
               Expanded(
                 child: ConstrainedBox(
                     constraints: BoxConstraints(minHeight: ResponsiveHelper.isDesktop(context) ? MediaQuery.of(context).size.height - 400 : MediaQuery.of(context).size.height),
