@@ -75,6 +75,8 @@ class AppConstants {
   static const String WISH_LIST_GET_URI = '/api/v1/products/favorite';
   static const String SOCIAL_LOGIN = '/api/v1/auth/social-customer-login';
   static const String UNSUBSCRIBE_TOPIC = '/api/v1/customer/unsubscribe-topic';
+  static const String WALLET_LIST_GET_URI = '/api/v1/customer/mywallet/list';
+  static const String ADD_WALLET_AMOUNT_URI = '/api/v1/customer/mywallet/adding';
 
   // Shared Key
   static const String THEME = 'theme';

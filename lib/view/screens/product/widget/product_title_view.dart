@@ -16,7 +16,8 @@ class ProductTitleView extends StatelessWidget {
   final Product product;
   final int stock;
   final int cartIndex;
-  ProductTitleView({@required this.product, @required this.stock,@required this.cartIndex});
+  final bool isOneTime;
+  ProductTitleView({@required this.product, @required this.stock,@required this.cartIndex,@required this.isOneTime});
 
   @override
   Widget build(BuildContext context) {
@@ -101,6 +102,7 @@ class ProductTitleView extends StatelessWidget {
 
               Expanded(child: SizedBox.shrink()),
 
+             // if(isOneTime)
               Builder(
                 builder: (context) {
                   return Row(children: [
@@ -110,6 +112,7 @@ class ProductTitleView extends StatelessWidget {
                       return Text(cartIndex != null ? cart.cartList[cartIndex].quantity.toString() : productProvider.quantity.toString(), style: poppinsSemiBold);
                     }),
                     SizedBox(width: 15),
+
                     QuantityButton(isIncrement: true, quantity: productProvider.quantity, stock: stock, cartIndex: cartIndex),
                   ]);
                 }

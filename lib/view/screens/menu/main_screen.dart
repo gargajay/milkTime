@@ -22,6 +22,7 @@ import 'package:flutter_grocery/view/screens/html/html_viewer_screen.dart';
 import 'package:flutter_grocery/view/screens/menu/widget/custom_drawer.dart';
 import 'package:flutter_grocery/view/screens/order/my_order_screen.dart';
 import 'package:flutter_grocery/view/screens/settings/setting_screen.dart';
+import 'package:flutter_grocery/view/screens/wallet/wallet_screen.dart';
 import 'package:flutter_grocery/view/screens/wishlist/wishlist_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -105,18 +106,35 @@ class _MainScreenState extends State<MainScreen> {
                       widget.drawerController.toggle();
                     }),
                 title: splash.pageIndex == 0 ? Row(children: [
-                  Image.asset(Images.app_logo, width: 25),
-                  SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
+                  Image.asset(Images.app_logo, width: 100),
+                  /*SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
                   Expanded(child: Text(
                     AppConstants.APP_NAME, maxLines: 1, overflow: TextOverflow.ellipsis,
                     style: poppinsMedium.copyWith(color: Theme.of(context).primaryColor),
-                  )),
+                  )),*/
                 ]) : Text(
                   getTranslated(_keys[splash.pageIndex], context),
                   style: poppinsMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE, color: Theme.of(context).primaryColor),
                 ),
 
                 actions: splash.pageIndex == 0 ? [
+                  IconButton(
+                      icon: Stack(clipBehavior: Clip.none, children: [
+                        Image.asset(Images.wallet, color: Theme.of(context).textTheme.bodyText1.color, width: 25),
+                        /*Positioned(
+                          top: -7,
+                          right: -2,
+                          child: Container(
+                            padding: EdgeInsets.all(3),
+                            decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).primaryColor),
+                            child: Text('${Provider.of<CartProvider>(context).cartList.length}',
+                                style: TextStyle(color: Theme.of(context).cardColor, fontSize: 10)),
+                          ),
+                        ),*/
+                      ]),
+                      onPressed: () {
+                        Navigator.pushNamed(context, RouteHelper.WALLET, arguments: WalletScreen());
+                      }),
                   IconButton(
                       icon: Stack(clipBehavior: Clip.none, children: [
                         Image.asset(Images.cart_icon, color: Theme.of(context).textTheme.bodyText1.color, width: 25),

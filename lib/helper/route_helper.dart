@@ -47,6 +47,7 @@ import 'package:flutter_grocery/view/screens/search/search_screen.dart';
 import 'package:flutter_grocery/view/screens/settings/setting_screen.dart';
 import 'package:flutter_grocery/view/screens/splash/splash_screen.dart';
 import 'package:flutter_grocery/view/screens/update/update_screen.dart';
+import 'package:flutter_grocery/view/screens/wallet/wallet_screen.dart';
 import 'package:flutter_grocery/view/screens/wishlist/wishlist_screen.dart';
 
 class RouteHelper {
@@ -96,6 +97,7 @@ class RouteHelper {
   static const String UPDATE = '/update';
   static const String ADD_ADDRESS_SCREEN = '/add-address';
   static const String ORDER_WEB_PAYMENT = '/order-web-payment';
+  static const String WALLET = '/wallet';
 
 
   static String getMainRoute() => menu;
@@ -346,6 +348,8 @@ class RouteHelper {
     return AddNewAddressScreen(fromCheckout: params['page'][0] == 'checkout', isEnableUpdate: _isUpdate, address: _isUpdate ? _addressModel : null);
   });
   static Handler _favoriteHandler = Handler(handlerFunc: (context, Map<String, dynamic> params) => WishListScreen());
+  static Handler _walletHandler = Handler(handlerFunc: (context, Map<String, dynamic> params) => WalletScreen());
+ // static Handler _notificationHandler = Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) => NotificationScreen());
 
   //static Handler _routeHandler = Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) => ModalRoute.of(context).settings.arguments);
 
@@ -398,5 +402,6 @@ class RouteHelper {
     router.define(UPDATE, handler: _updateHandler, transitionType: TransitionType.fadeIn);
     router.define(ADD_ADDRESS_SCREEN, handler: _newAddressHandler, transitionType: TransitionType.fadeIn);
     router.define(favorite, handler: _favoriteHandler, transitionType: TransitionType.fadeIn);
+    router.define(WALLET, handler: _walletHandler, transitionType: TransitionType.fadeIn);
   }
 }
