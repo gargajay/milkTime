@@ -1,48 +1,40 @@
 {
   "project_info": {
-    "project_number": "250728969979",
-    "project_id": "grofresh-3986f",
-    "storage_bucket": "grofresh-3986f.appspot.com"
+    "project_number": "329850816884",
+    "project_id": "localroots-c9e7c",
+    "storage_bucket": "localroots-c9e7c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:250728969979:android:375fde0efc7db10a75a25e",
+        "mobilesdk_app_id": "1:329850816884:android:d3f54bb9a62042944b0421",
         "android_client_info": {
-          "package_name": "com.u6amtech.flutter_grocery"
+          "package_name": "com.rjaytech.localroots"
         }
       },
       "oauth_client": [
         {
-          "client_id": "250728969979-cqpd7oloid19e09dfbtn0gv8dfu7t5hm.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.u6amtech.flutter_grocery",
-            "certificate_hash": "5174bb127f738b159ef1dd0a987166a682761bf3"
-          }
-        },
-        {
-          "client_id": "250728969979-9nqsmhb458assn7q1a68cgasgg5q5mtg.apps.googleusercontent.com",
+          "client_id": "329850816884-kdcp2sbtho9s2a5b6jb4v856o7g615o3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDTFm7oPur3xhZbVmCkgFkGFcR-44h6Gyo"
+          "current_key": "AIzaSyC2Ku_iNqZsPHkfRvhovdB7ziCAM-7wC38"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "250728969979-9nqsmhb458assn7q1a68cgasgg5q5mtg.apps.googleusercontent.com",
+              "client_id": "329850816884-kdcp2sbtho9s2a5b6jb4v856o7g615o3.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "250728969979-fleqs5q1qb8034me2jol9a4dleo8cbcn.apps.googleusercontent.com",
+              "client_id": "329850816884-6tf75p9ihdl9vpj6gsjf61fj70n4mp8l.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.u6amtech.flutterGrocery"
+                "bundle_id": "com.6amtech.emarketDeliveryBoy"
               }
             }
           ]
@@ -51,34 +43,70 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:250728969979:android:945c6fd7f51e95fd75a25e",
+        "mobilesdk_app_id": "1:329850816884:android:710df41cce96474a4b0421",
         "android_client_info": {
-          "package_name": "com.u6amtech.grocery_delivery_boy"
+          "package_name": "com.rjaytech.localroots_delivery_boy"
         }
       },
       "oauth_client": [
         {
-          "client_id": "250728969979-9nqsmhb458assn7q1a68cgasgg5q5mtg.apps.googleusercontent.com",
+          "client_id": "329850816884-kdcp2sbtho9s2a5b6jb4v856o7g615o3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDTFm7oPur3xhZbVmCkgFkGFcR-44h6Gyo"
+          "current_key": "AIzaSyC2Ku_iNqZsPHkfRvhovdB7ziCAM-7wC38"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "250728969979-9nqsmhb458assn7q1a68cgasgg5q5mtg.apps.googleusercontent.com",
+              "client_id": "329850816884-kdcp2sbtho9s2a5b6jb4v856o7g615o3.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "250728969979-fleqs5q1qb8034me2jol9a4dleo8cbcn.apps.googleusercontent.com",
+              "client_id": "329850816884-6tf75p9ihdl9vpj6gsjf61fj70n4mp8l.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.u6amtech.flutterGrocery"
+                "bundle_id": "com.6amtech.emarketDeliveryBoy"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329850816884:android:02f43c89ff640a654b0421",
+        "android_client_info": {
+          "package_name": "com.rjaytech.loocalroots"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "329850816884-kdcp2sbtho9s2a5b6jb4v856o7g615o3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2Ku_iNqZsPHkfRvhovdB7ziCAM-7wC38"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "329850816884-kdcp2sbtho9s2a5b6jb4v856o7g615o3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "329850816884-6tf75p9ihdl9vpj6gsjf61fj70n4mp8l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.6amtech.emarketDeliveryBoy"
               }
             }
           ]
